@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>VILUFUSHEE SCHOOL - Lesson Plan Portal</title>
+  <title>DHANBIDHOO SCHOOL - Lesson Plan Portal</title>
   <style>
     :root {
       --primary: #1e3a8a;
@@ -103,7 +103,7 @@
   </div>
 
   <div class="header">
-    <h1>VILUFUSHEE SCHOOL</h1>
+    <h1>DHANBIDHOO SCHOOL</h1>
     <p id="header-subtitle">Lesson Plan Generator</p>
   </div>
 
@@ -165,7 +165,7 @@
       </div>
 
       <button class="btn" id="generateBtn" onclick="generateDocument()" style="padding: 15px; font-size: 16px;">
-        Generate VILUFUSHEE SCHOOL Lesson Plan
+        Generate DHANBIDHOO SCHOOL Lesson Plan
       </button>
     </div>
     
@@ -181,10 +181,8 @@
   <div id="status"></div>
 
   <script>
-    // ==========================================
-    // DEPLOYED APP URL
-    // ==========================================
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw1SsiUGershaQ2fVXUXFb6YArO3c15Qx983_XOo_KZliCWTWdybj-2KX97BMmb6ewd/exec"; 
+    // Replace with your Dhanbidhoo Web App deployment URL
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxRkufJUEY-n2Hszk25rRvvBfww3fgnV_4sWz6iiFmUSNWys9IWS0acKf2gxmI9zgAW/exec"; 
     
     let globalOutcomes = [];
 
@@ -342,13 +340,11 @@
         </div>
         <div class="selected-outcomes-container" style="margin-top:15px;"></div>
 
-        <!-- TEACHING AIDS FIELD -->
         <div style="margin-top: 15px;">
            <label style="color:var(--primary); margin-bottom:4px; font-weight:bold;">Teaching Aids (Dhivehi / English)</label>
            <textarea class="p-teaching-aids" rows="2" placeholder="e.g. ވައިޓްބޯޑު، މަސައްކަތު ކަރުދާސް، ޕްރެޒެންޓޭޝަން..."></textarea>
         </div>
 
-        <!-- GEMINI AI FIELDS (LI, SC & ACTIVITY) -->
         <div class="activity-box">
            <label style="color:#15803d; margin-bottom:4px; font-weight:bold; display:block;">Learning Intention (Dhivehi)</label>
            <textarea class="p-li" rows="2" placeholder="AI Learning Intention will appear here..." style="width:100%; font-family:'Faruma', 'Thaana', sans-serif; direction:rtl; text-align:right; margin-bottom:10px;"></textarea>
@@ -406,7 +402,6 @@
        selectElement.value = ""; 
     }
 
-    // FUNCTION TO TRIGGER GEMINI AI FOR A PERIOD CARD (LI, SC, & ACTIVITY)
     async function generateAIActivityForPeriod(btn) {
       const card = btn.closest('.period-card');
       const outcomeBlocks = card.querySelectorAll('.outcome-block');
@@ -527,10 +522,10 @@
                         strand: cStrand,
                         substrand: cSub,
                         indicators: combinedIndicators,
-                        teachingAids: teachingAidsVal, // Sends Teaching Aids value to Code.gs
-                        customLI: customLiVal,         // Sends LI box value to Code.gs
-                        customSC: customScVal,         // Sends SC box value to Code.gs
-                        customActivity: customActVal   // Sends Activity box value to Code.gs
+                        teachingAids: teachingAidsVal,
+                        customLI: customLiVal,         
+                        customSC: customScVal,         
+                        customActivity: customActVal   
                     });
                 }
             });
