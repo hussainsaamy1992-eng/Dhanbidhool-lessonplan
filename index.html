@@ -181,8 +181,7 @@
   <div id="status"></div>
 
   <script>
-    // Replace with your Dhanbidhoo Web App deployment URL
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyI8Dxpj0wlNu6TGhO3AO8LSLznKIx3XzLZUv0OnZcQ7HbbpTkg9MicVcvfRSi82H2Y/exec"; 
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyLT6_dmjG9UyiAwdbpU9dPa2f1PsO4wZKMl2hDGKAMDrusQ3NCKumFjnR4qSpVInSL/exec"; 
     
     let globalOutcomes = [];
 
@@ -340,12 +339,11 @@
         </div>
         <div class="selected-outcomes-container" style="margin-top:15px;"></div>
 
-        <div style="margin-top: 15px;">
-           <label style="color:var(--primary); margin-bottom:4px; font-weight:bold;">Teaching Aids (Dhivehi / English)</label>
-           <textarea class="p-teaching-aids" rows="2" placeholder="e.g. ވައިޓްބޯޑު، މަސައްކަތު ކަރުދާސް، ޕްރެޒެންޓޭޝަން..."></textarea>
-        </div>
-
+        <!-- AI GENERATED BOX -->
         <div class="activity-box">
+           <label style="color:#15803d; margin-bottom:4px; font-weight:bold; display:block;">Teaching Aids (Dhivehi)</label>
+           <textarea class="p-teaching-aids" rows="2" placeholder="AI Teaching Aids will appear here or type your own..." style="width:100%; font-family:'Faruma', 'Thaana', sans-serif; direction:rtl; text-align:right; margin-bottom:10px;"></textarea>
+
            <label style="color:#15803d; margin-bottom:4px; font-weight:bold; display:block;">Learning Intention (Dhivehi)</label>
            <textarea class="p-li" rows="2" placeholder="AI Learning Intention will appear here..." style="width:100%; font-family:'Faruma', 'Thaana', sans-serif; direction:rtl; text-align:right; margin-bottom:10px;"></textarea>
 
@@ -356,7 +354,7 @@
            <textarea class="p-activity" rows="2" placeholder="AI activity will appear here or type your own..." style="width:100%; font-family:'Faruma', 'Thaana', sans-serif; direction:rtl; text-align:right; margin-bottom:10px;"></textarea>
 
            <button type="button" class="btn-ai" onclick="generateAIActivityForPeriod(this)">
-             ✨ Generate AI Details (LI, SC & Activity)
+             ✨ Generate AI Details (TA, LI, SC & Activity)
            </button>
         </div>
       `;
@@ -405,6 +403,7 @@
     async function generateAIActivityForPeriod(btn) {
       const card = btn.closest('.period-card');
       const outcomeBlocks = card.querySelectorAll('.outcome-block');
+      const taTextarea = card.querySelector('.p-teaching-aids');
       const liTextarea = card.querySelector('.p-li');
       const scTextarea = card.querySelector('.p-sc');
       const actTextarea = card.querySelector('.p-activity');
@@ -443,9 +442,10 @@
         const res = await response.json();
 
         btn.disabled = false;
-        btn.innerText = "✨ Generate AI Details (LI, SC & Activity)";
+        btn.innerText = "✨ Generate AI Details (TA, LI, SC & Activity)";
 
         if (res.success) {
+          if (taTextarea && res.teachingAids) taTextarea.value = res.teachingAids;
           if (liTextarea && res.learningIntention) liTextarea.value = res.learningIntention;
           if (scTextarea && res.successCriteria) scTextarea.value = res.successCriteria;
           if (actTextarea && res.activity) actTextarea.value = res.activity;
@@ -454,7 +454,7 @@
         }
       } catch (err) {
         btn.disabled = false;
-        btn.innerText = "✨ Generate AI Details (LI, SC & Activity)";
+        btn.innerText = "✨ Generate AI Details (TA, LI, SC & Activity)";
         alert("Network Error: Failed to generate AI content.");
       }
     }
